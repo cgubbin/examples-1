@@ -15,13 +15,13 @@ async fn main() -> std::io::Result<()> {
         .await
         .expect("fail to build pool");
 
-    let pool = RedisWrapper(pool);
+    let pool = Data::new(RedisWrapper(pool));
 
     HttpServer::new(move || {
         let redis_url = redis_url.clone();
 
         App::new()
-            .data(pool.clone())
+            .app_data(pool.clone())
             // a dummy data_factory implementation
             .data_factory(|| {
                 /*
@@ -83,7 +83,7 @@ async fn pool_builder(
     num_cpus: usize,
     redis_url: impl redis::IntoConnectionInfo,
 ) -> Result<Pool<RedisManager>, ()> {
-    let mgr = RedisManager::new(redis_url);
+    let mgr = redis_tang::RedisManager::new(redis_url);
     Builder::new()
         .always_check(false)
         .idle_timeout(None)
