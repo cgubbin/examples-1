@@ -28,7 +28,7 @@ cargo install diesel_cli --no-default-features --features postgres
 Check the contents of the `.env` file. If your database requires a password, update `DATABASE_URL` to be of the form:
 
 ```.env
-DATABASE_URL=postgres://username:password@localhost/actix_todo
+DATABASE_URL=postgres://username:password@localhost:5432/actix_todo
 ```
 
 Then to create and set-up the database run:
