@@ -1,9 +1,0 @@
-[package]
-name = "http-proxy"
-version = "1.0.0"
-edition = "2021"
-
-[dependencies]
-actix-web = { version = "3", features = ["openssl"] }
-clap = "2.33"
-url = "2.0"
